@@ -29,7 +29,7 @@ public class ProjectService {
 
         if (project == null) {
             throw new ProjectIdException("Cant add project with same project identifier. "
-                    + "Project with this projectId " + project.getProjectIdentifier() + " does not exists.");
+                    + "Project with this projectId " + projectId + " does not exists.");
         }
 
         return project;
