@@ -25,7 +25,7 @@ public class ProjectService {
 
     public Project findProject(String projectId) {
 
-        Project project = projectRepository.findByProjectIdentifier(projectId);
+        Project project = projectRepository.findByProjectIdentifier(projectId.toUpperCase());
 
         if (project == null) {
             throw new ProjectIdException("Cant add project with same project identifier. "
@@ -34,4 +34,20 @@ public class ProjectService {
 
         return project;
     }
+
+    public Iterable<Project> findAllProjects() {
+        return projectRepository.findAll();
+    }
+
+    public void deleteByIdentifier (String projectId){
+
+        Project project = projectRepository.findByProjectIdentifier(projectId.toUpperCase());
+
+        if(project == null){
+            throw new ProjectIdException("Cant delete project that is not in the database");
+        }
+
+        projectRepository.delete(project);
+    }
+    
 }
